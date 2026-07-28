@@ -2,72 +2,104 @@
 
 # 🚀 Project Aurora
 
-### *Engineering a Production-Grade Learning Platform from Concept to Production*
+### Engineering an Enterprise-Grade Digital Learning Platform
 
-<img src="https://img.shields.io/badge/Status-Project%20Initiation-blue?style=for-the-badge" />
-<img src="https://img.shields.io/badge/Open%20Source-Yes-success?style=for-the-badge" />
-<img src="https://img.shields.io/badge/Architecture-Industry%20Standard-orange?style=for-the-badge" />
-<img src="https://img.shields.io/badge/Documentation-First-important?style=for-the-badge" />
+**An open-source project that demonstrates how professional software is designed, built, tested, deployed, and maintained.**
 
----
+*"We're not just building a learning platform. We're building it the way real software companies build production software."*
 
-**Building this project exactly the way professional software companies build production software.**
-
-*"This repository documents every stage of the software engineering lifecycle—from business requirements to deployment and maintenance."*
+![Status](https://img.shields.io/badge/Status-Active%20Development-brightgreen)
+![License](https://img.shields.io/badge/License-MIT-blue)
+![Open Source](https://img.shields.io/badge/Open%20Source-Welcome-success)
+![Contributions](https://img.shields.io/badge/Contributions-Welcome-orange)
 
 </div>
 
 ---
 
-# 🌟 About Project Aurora
+# 🌟 Welcome
 
-Project Aurora is an open-source initiative to engineer a **production-grade Learning Platform** using the complete Software Development Life Cycle (SDLC).
+Welcome to **Project Aurora**.
 
-Unlike traditional portfolio projects, Aurora is being developed exactly like a real software product—with structured planning, architecture, documentation, engineering standards, testing, deployment, and long-term maintenance.
+Whether you're:
 
-The goal is not simply to build software.
+- 👨‍🎓 A student learning software engineering
+- 👨‍💻 A developer looking to contribute
+- 🏢 An organization exploring the project
+- ❤️ An open-source enthusiast
 
-The goal is to **learn how professional software is engineered.**
+**You're welcome here.**
+
+Project Aurora is being developed in public so everyone can learn how professional software products are engineered from the very beginning.
+
+---
+
+# 💡 Why Project Aurora?
+
+Most portfolio projects only show the final product.
+
+Project Aurora shows the **entire journey**.
+
+Instead of only writing code, we're following the same engineering process used by professional software teams.
+
+That means you'll see:
+
+- Business Analysis
+- Requirements Engineering
+- Software Architecture
+- Database Design
+- API Design
+- Development
+- Testing
+- Deployment
+- Maintenance
+
+Everything is documented and built step by step.
 
 ---
 
 # 🎯 Vision
 
-Create a scalable, secure, modern learning platform while demonstrating industry-standard software engineering practices from project initiation to production.
+To build an enterprise-grade digital learning platform while creating one of the best open-source references for modern software engineering.
 
 ---
 
 # 🚀 Mission
 
-Build a platform where learners can access high-quality educational content while creating a public reference project that showcases professional software engineering.
+Build a scalable, secure, and maintainable learning platform that helps educators deliver high-quality education while enabling contributors to learn professional software development through real collaboration.
 
 ---
 
-# ✨ Core Objectives
+# ❤️ Who Is This Project For?
 
-- 📌 Build a production-ready software product
-- 📌 Follow the complete Software Development Life Cycle
-- 📌 Practice Software Architecture before coding
-- 📌 Maintain professional documentation
-- 📌 Encourage Open Source Collaboration
-- 📌 Focus on scalability and maintainability
-- 📌 Learn enterprise software development practices
+Project Aurora is for:
+
+- Students
+- Software Developers
+- UI/UX Designers
+- QA Engineers
+- DevOps Engineers
+- Technical Writers
+- Open Source Contributors
+- Educational Institutions
+- Content Creators
+
+No matter your experience level, there is a way to contribute.
 
 ---
 
 # 🏗️ Software Development Lifecycle
 
+Aurora follows a professional SDLC.
+
 ```text
-Project Initiation
+Business Discovery
         │
         ▼
-Requirement Gathering
+Business Requirements
         │
         ▼
-Business Analysis
-        │
-        ▼
-Architecture Design
+Software Architecture
         │
         ▼
 Database Design
@@ -76,16 +108,13 @@ Database Design
 API Design
         │
         ▼
-UI / UX Design
+UI / UX
         │
         ▼
 Development
         │
         ▼
 Testing
-        │
-        ▼
-CI / CD
         │
         ▼
 Deployment
@@ -95,180 +124,178 @@ Monitoring
         │
         ▼
 Maintenance
-```
 
----
 
 # 🧠 Engineering Principles
 
-✔ Documentation before Development
+Project Aurora follows a set of engineering principles that guide every technical and architectural decision.
 
-✔ Architecture before Implementation
+| Principle | Description |
+|-----------|-------------|
+| 🏗️ Architecture First | Design the system before implementation. |
+| 📖 Documentation Driven | Maintain clear and up-to-date documentation. |
+| 🔒 Security by Design | Build security into every layer of the system. |
+| 🧩 Modular Architecture | Keep modules independent and maintainable. |
+| 🧪 Test Early | Ensure quality through continuous testing. |
+| 🚀 Scalability | Design for future growth from the beginning. |
+| 🤝 Open Collaboration | Encourage community-driven development. |
+| 📈 Continuous Improvement | Continuously refine the product and engineering practices. |
 
-✔ Security by Design
 
-✔ Clean Code Practices
 
-✔ Scalable Architecture
+# 🏛️ System Architecture
 
-✔ Production Ready Mindset
+Aurora follows a **Modular Monolith Architecture**, enabling independent feature development while maintaining a single deployable application.
 
-✔ Industry Standard Git Workflow
+```text
+Users
+   │
+   ▼
+React Frontend
+   │
+REST API
+   │
+Spring Boot Backend
+   │
+PostgreSQL Database
+   │
+External Services
+```
 
-✔ Continuous Improvement
+This architecture provides:
 
----
+- High maintainability
+- Clear separation of concerns
+- Easier onboarding for contributors
+- Future migration path to microservices
 
-# 🛠 Planned Technology Stack
 
-## Frontend
 
-- ⚛ React
-- 🎨 Tailwind CSS
+# 🛠️ Technology Stack
 
-## Backend
+| Layer | Technology |
+|--------|------------|
+| Frontend | React + TypeScript + Vite |
+| Styling | Tailwind CSS + shadcn/ui |
+| Backend | Java 21 + Spring Boot |
+| Security | Spring Security + JWT |
+| Database | PostgreSQL |
+| ORM | Spring Data JPA + Hibernate |
+| Build Tool | Maven |
+| API | REST |
+| File Storage | MinIO (Development), AWS S3 (Production) |
+| DevOps | Docker, GitHub Actions |
+| Cloud | AWS (Planned) |
 
-- ☕ Java
-- 🌱 Spring Boot
-- 🔐 Spring Security
-
-## Database
-
-- 🛢 MySQL
-
-## Authentication
-
-- 🔑 JWT
-
-## Cloud
-
-- ☁ AWS / Cloudflare
-
-## DevOps
-
-- 🐳 Docker
-- ⚙ GitHub Actions
-
----
 
 # 📂 Repository Structure
 
 ```text
 Project-Aurora/
-
 │
-├── .github/
-├── apps/
-├── assets/
-├── database/
-├── docs/
-├── infrastructure/
-├── scripts/
+├── apps/               # Backend & Frontend
+├── database/           # Schema & Migrations
+├── docs/               # Engineering Documentation
+├── infrastructure/     # Docker & Deployment
+├── packages/           # Shared Libraries
+├── scripts/            # Automation Scripts
+├── assets/             # Static Assets
 │
 ├── README.md
 ├── CONTRIBUTING.md
-├── CHANGELOG.md
 ├── CODE_OF_CONDUCT.md
 ├── LICENSE
-└── .gitignore
+└── CHANGELOG.md
 ```
 
----
 
 # 📚 Documentation
 
-The project documentation is organized similarly to a professional engineering organization.
+Aurora documents every major engineering decision.
 
 | Document | Status |
-|----------|--------|
-| 📄 Product Vision | 🔄 Planned |
-| 📄 Project Charter | 🔄 Planned |
-| 📄 Business Requirements | 🔄 Planned |
-| 📄 Functional Requirements | 🔄 Planned |
-| 📄 Software Architecture | 🔄 Planned |
-| 📄 Database Design | 🔄 Planned |
-| 📄 API Specification | 🔄 Planned |
-| 📄 UI / UX Design | 🔄 Planned |
-| 📄 Testing Strategy | 🔄 Planned |
-| 📄 Deployment Guide | 🔄 Planned |
+|-----------|--------|
+| 📄 Project Charter | ✅ Complete |
+| 📄 Business Capability Model | ✅ Complete |
+| 📄 Business Requirements (BRD) | ✅ Complete |
+| 📄 Domain Model | ✅ Complete |
+| 📄 High-Level Design (HLD) | ✅ Complete |
+| 📄 Database Design | ✅ Complete |
+| 📄 Database Schema | ✅ Complete |
+| 📄 API Specification | 🚧 In Progress |
 
----
 
-# 📈 Development Roadmap
+# 🌱 New Contributor? Start Here
 
-- ✅ Repository Initialization
-- 🔄 Product Discovery
-- ⏳ Requirement Engineering
-- ⏳ System Architecture
-- ⏳ Database Design
-- ⏳ API Design
-- ⏳ UI/UX Design
-- ⏳ Sprint Development
-- ⏳ Testing
-- ⏳ Deployment
-- ⏳ Production Release
+If this is your first time contributing to Project Aurora, follow this path:
 
----
+1. Read this README.
+2. Review the Project Charter to understand the vision.
+3. Explore the architecture documents in the `docs` folder.
+4. Check issues labeled **good first issue** or **help wanted**.
+5. Set up the project locally.
+6. Make your first contribution.
+7. Open a Pull Request.
 
-# 🤝 Open Source Contribution
+Every expert contributor started with a first contribution. Whether you're fixing a typo or implementing a feature, your work is valued.
 
-Project Aurora welcomes developers who are passionate about learning professional software engineering practices.
 
-Contributors will have opportunities to work on:
+# 🤝 How to Contribute
 
-- Frontend Development
-- Backend Development
-- System Design
-- Database Design
-- API Development
-- Documentation
-- Testing
-- DevOps
+We welcome contributors of all experience levels.
 
-Contribution guidelines will be published before development begins.
+You can contribute by:
 
----
+- 💻 Developing new features
+- 🐛 Fixing bugs
+- 📚 Improving documentation
+- 🎨 Enhancing UI/UX
+- 🧪 Writing tests
+- ⚙️ Improving DevOps
 
-# 📊 Current Status
+For the complete contribution process, please read:
+
+➡️ **[CONTRIBUTING.md](CONTRIBUTING.md)**
+
+
+
+# 🚀 Development Workflow
+
+Every contribution follows a structured workflow.
 
 ```text
-Project Phase
-
-██████░░░░░░░░░░░░░░░░░░░░░░░ 20%
-
-Current Sprint
-
-Sprint 0
-
-Status
-
-Project Initiation
+Fork
+   │
+Clone
+   │
+Create Branch
+   │
+Develop
+   │
+Test
+   │
+Commit
+   │
+Push
+   │
+Pull Request
+   │
+Review
+   │
+Merge
 ```
 
----
+# ⭐ Support the Project
 
-# 🌍 Long-Term Vision
+If you like Project Aurora:
 
-Project Aurora is being designed for future expansion, including:
+- ⭐ Star this repository
+- 🍴 Fork the repository
+- 🐞 Report bugs
+- 💡 Suggest features
+- 🤝 Contribute
+- 📢 Share the project
 
-- 🎓 Course Management
-- 🤖 AI Learning Assistant
-- 🧠 Personalized Learning
-- 📹 Live Classes
-- 📝 Assessments
-- 🏆 Certifications
-- 👥 Community Platform
-- 📊 Learning Analytics
-- 📱 Mobile Applications
+Every contribution helps make Aurora better.
 
----
 
-<div align="center">
-
-## ⭐ If you like this project, consider giving it a Star!
-
-### Thanks for visiting Project Aurora ❤️
-
-*"Engineering Software. Not Just Writing Code."*
-
-</div>
