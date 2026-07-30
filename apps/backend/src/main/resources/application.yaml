@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: aurora-backend
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/aurora_dev
+    username: postgres
+    password: PravPost90@123
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+server:
+  port: 8080
+
+logging:
+  level:
+    org.springframework: INFO
+    org.hibernate.SQL: INFO
