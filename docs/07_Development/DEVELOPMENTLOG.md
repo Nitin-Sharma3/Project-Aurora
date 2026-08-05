@@ -271,3 +271,111 @@ None.
 # Status
 
 ✅ Sprint Completed Successfully
+
+
+---
+
+# Date
+
+03 August 2026
+
+# Sprint
+
+Sprint 03 – Repository Layer
+
+---
+
+# Objective
+
+Implement the Repository Layer for the authentication module.
+
+---
+
+# Completed Work
+
+## Repository Layer
+
+Implemented:
+
+- UserRepository
+- RoleRepository
+- UserRoleRepository
+
+---
+
+## UserRepository
+
+Added:
+
+- findByEmail(String email)
+- existsByEmail(String email)
+
+Purpose:
+
+- User registration
+- User authentication
+- Email validation
+
+---
+
+## RoleRepository
+
+Added:
+
+- findByRoleName(RoleType roleName)
+
+Purpose:
+
+- Retrieve platform roles
+- Support role assignment during registration
+
+---
+
+## UserRoleRepository
+
+Implemented repository for user-role mapping.
+
+Uses inherited CRUD operations from JpaRepository.
+
+---
+
+# Build Verification
+
+Executed:
+
+```bash
+./mvnw clean compile
+```
+
+Result:
+
+```text
+BUILD SUCCESS
+```
+
+---
+
+# Current Authentication Progress
+
+Completed:
+
+- Database Schema
+- Domain Model
+- Repository Layer
+
+---
+
+# Next Sprint
+
+- DTO Layer
+- Mapper Layer
+- Service Layer
+- Authentication APIs
+
+---
+
+# Status
+
+✅ Repository layer completed successfully.
+
+✅ Ready for DTO implementation.

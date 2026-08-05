@@ -166,3 +166,75 @@ One role can belong to multiple users.
 | V5 | Enrollments & Payments |
 | V6 | Live Classes |
 | V7 | Progress Tracking |
+
+---
+
+# Repository Layer
+
+## Overview
+
+The Repository Layer has been implemented using Spring Data JPA.
+
+Repositories provide the data access abstraction between the service layer and PostgreSQL.
+
+---
+
+## Implemented Repositories
+
+### UserRepository
+
+Purpose:
+
+- Find user by email
+- Check if email already exists
+- Perform CRUD operations
+
+Custom Methods:
+
+- Optional<User> findByEmail(String email)
+- boolean existsByEmail(String email)
+
+---
+
+### RoleRepository
+
+Purpose:
+
+- Retrieve platform roles
+
+Custom Methods:
+
+- Optional<Role> findByRoleName(RoleType roleName)
+
+---
+
+### UserRoleRepository
+
+Purpose:
+
+- Manage user-role associations
+
+Extends:
+
+- JpaRepository<UserRole, UserRoleId>
+
+Currently relies on inherited CRUD operations.
+
+---
+
+## Repository Architecture
+
+```
+Controller
+      │
+      ▼
+Service
+      │
+      ▼
+Repository
+      │
+      ▼
+PostgreSQL
+```
+
+The repository layer is now ready for service implementation.
