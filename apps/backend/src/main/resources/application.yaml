@@ -27,3 +27,7 @@ logging:
   level:
     org.springframework: INFO
     org.hibernate.SQL: INFO
+
+jwt:
+  secret: 4b0d6c0b8d89b3a3f8d5f5d0b0c2a8f1d4c7e9a2b6f1c3d8e5f7a9b1c2d3e4f5
+  expiration: 86400000
