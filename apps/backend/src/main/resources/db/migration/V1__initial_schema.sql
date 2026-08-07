@@ -5,6 +5,7 @@
 -- ==========================================
 
 CREATE TABLE users (
+
     id BIGSERIAL PRIMARY KEY,
 
     first_name VARCHAR(100) NOT NULL,
@@ -21,16 +22,20 @@ CREATE TABLE users (
 
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+
 );
 
 CREATE TABLE roles (
+
     id SMALLSERIAL PRIMARY KEY,
 
     role_name VARCHAR(50) NOT NULL UNIQUE,
 
     description VARCHAR(255) NOT NULL,
 
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+
 );
 
 CREATE TABLE user_roles (
@@ -51,6 +56,7 @@ CREATE TABLE user_roles (
     CONSTRAINT fk_user_roles_role
         FOREIGN KEY (role_id)
         REFERENCES roles(id)
+
 );
 
 INSERT INTO roles (role_name, description)
