@@ -1,14 +1,22 @@
 package com.projectaurora.backend.service.impl;
 
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.projectaurora.backend.dto.auth.AuthResponse;
 import com.projectaurora.backend.dto.auth.LoginRequest;
 import com.projectaurora.backend.dto.auth.RegisterRequest;
+import com.projectaurora.backend.entity.Role;
 import com.projectaurora.backend.entity.User;
+import com.projectaurora.backend.entity.UserRole;
+import com.projectaurora.backend.entity.UserRoleId;
+import com.projectaurora.backend.enums.RoleType;
 import com.projectaurora.backend.exception.EmailAlreadyExistsException;
+import com.projectaurora.backend.exception.InvalidCredentialsException;
+import com.projectaurora.backend.exception.ResourceNotFoundException;
+import com.projectaurora.backend.mapper.UserMapper;
 import com.projectaurora.backend.repository.RoleRepository;
 import com.projectaurora.backend.repository.UserRepository;
 import com.projectaurora.backend.repository.UserRoleRepository;
@@ -32,13 +40,13 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public AuthResponse register(RegisterRequest request) {
 
-        // Check whether the email is already registered
+        // Check if email already exists
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new EmailAlreadyExistsException(
                     "Email already registered: " + request.getEmail());
         }
 
-        // Create the user
+        // Create user
         User user = User.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
@@ -48,23 +56,54 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .emailVerified(false)
                 .build();
 
-        // Save the user
-        userRepository.save(user);
+        // Save user
+        user = userRepository.save(user);
 
-        // Remaining implementation:
-        // 1. Fetch STUDENT role
-        // 2. Save UserRole
-        // 3. Generate JWT
-        // 4. Return AuthResponse
+        // Fetch default STUDENT role
+        Role studentRole = roleRepository.findByRoleName(RoleType.STUDENT)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Default role STUDENT not found"));
 
-        throw new UnsupportedOperationException(
-                "Role assignment and JWT generation not implemented yet");
+        // Assign role
+        UserRole userRole = UserRole.builder()
+                .id(new UserRoleId(user.getId(), studentRole.getId()))
+                .user(user)
+                .role(studentRole)
+                .build();
+
+        userRoleRepository.save(userRole);
+
+        // Generate JWT
+        String jwtToken = jwtService.generateToken(user.getEmail());
+
+        // Return response
+        return AuthResponse.builder()
+                .accessToken(jwtToken)
+                .tokenType("Bearer")
+                .user(UserMapper.toResponse(user))
+                .build();
     }
 
     @Override
     public AuthResponse login(LoginRequest request) {
 
-        throw new UnsupportedOperationException(
-                "Login not implemented yet");
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getEmail(),
+                        request.getPassword()));
+
+        User user = userRepository.findByEmail(request.getEmail())
+                .orElseThrow(() ->
+                        new InvalidCredentialsException(
+                                "Invalid email or password"));
+
+        String jwtToken = jwtService.generateToken(user.getEmail());
+
+        return AuthResponse.builder()
+                .accessToken(jwtToken)
+                .tokenType("Bearer")
+                .user(UserMapper.toResponse(user))
+                .build();
     }
 }
