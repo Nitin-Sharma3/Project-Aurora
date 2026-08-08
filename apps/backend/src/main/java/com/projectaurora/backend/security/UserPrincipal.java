@@ -1,13 +1,15 @@
 package com.projectaurora.backend.security;
 
 import java.util.Collection;
-import java.util.Collections;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.projectaurora.backend.entity.User;
+import com.projectaurora.backend.entity.UserRole;
 
 public class UserPrincipal implements UserDetails {
 
@@ -20,9 +22,15 @@ public class UserPrincipal implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
-        return Collections.singletonList(
-                new SimpleGrantedAuthority("ROLE_USER"));
+        Set<String> authorities = user.getUserRoles()
+                .stream()
+                .map(UserRole::getRole)
+                .map(role -> "ROLE_" + role.getRoleName().name())
+                .collect(Collectors.toSet());
 
+        return authorities.stream()
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toSet());
     }
 
     @Override

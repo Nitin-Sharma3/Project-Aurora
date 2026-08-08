@@ -1,9 +1,12 @@
 package com.projectaurora.backend.service.impl;
 
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationServiceException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.projectaurora.backend.dto.auth.AuthResponse;
 import com.projectaurora.backend.dto.auth.LoginRequest;
@@ -37,16 +40,20 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
+    /**
+     * Registers a new user and assigns the default STUDENT role.
+     */
     @Override
+    @Transactional
     public AuthResponse register(RegisterRequest request) {
 
-        // Check if email already exists
+        // 1. Check if email already exists
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new EmailAlreadyExistsException(
                     "Email already registered: " + request.getEmail());
         }
 
-        // Create user
+        // 2. Create user
         User user = User.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
@@ -56,28 +63,31 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .emailVerified(false)
                 .build();
 
-        // Save user
+        // 3. Save user
         user = userRepository.save(user);
 
-        // Fetch default STUDENT role
+        // 4. Fetch default STUDENT role
         Role studentRole = roleRepository.findByRoleName(RoleType.STUDENT)
                 .orElseThrow(() ->
                         new ResourceNotFoundException(
                                 "Default role STUDENT not found"));
 
-        // Assign role
+        // 5. Create user-role relationship
         UserRole userRole = UserRole.builder()
-                .id(new UserRoleId(user.getId(), studentRole.getId()))
+                .id(new UserRoleId(
+                        user.getId(),
+                        studentRole.getId()))
                 .user(user)
                 .role(studentRole)
                 .build();
 
+        // 6. Save user-role relationship
         userRoleRepository.save(userRole);
 
-        // Generate JWT
+        // 7. Generate JWT
         String jwtToken = jwtService.generateToken(user.getEmail());
 
-        // Return response
+        // 8. Return authentication response
         return AuthResponse.builder()
                 .accessToken(jwtToken)
                 .tokenType("Bearer")
@@ -85,21 +95,48 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .build();
     }
 
+    /**
+     * Authenticates an existing user and generates a JWT.
+     */
     @Override
     public AuthResponse login(LoginRequest request) {
 
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword()));
+        try {
 
+            // 1. Authenticate email and password
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            request.getEmail(),
+                            request.getPassword()));
+
+        } catch (BadCredentialsException ex) {
+
+            throw new InvalidCredentialsException(
+                    "Invalid email or password");
+
+        } catch (AuthenticationServiceException ex) {
+
+            throw new InvalidCredentialsException(
+                    "Unable to authenticate user");
+
+        }
+
+        // 2. Fetch authenticated user
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() ->
                         new InvalidCredentialsException(
                                 "Invalid email or password"));
 
+        // 3. Check whether account is active
+        if (!Boolean.TRUE.equals(user.getActive())) {
+            throw new InvalidCredentialsException(
+                    "User account is inactive");
+        }
+
+        // 4. Generate JWT
         String jwtToken = jwtService.generateToken(user.getEmail());
 
+        // 5. Return authentication response
         return AuthResponse.builder()
                 .accessToken(jwtToken)
                 .tokenType("Bearer")
