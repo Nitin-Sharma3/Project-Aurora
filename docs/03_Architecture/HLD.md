@@ -238,21 +238,3 @@ Future enhancements may include:
 
 ---
 
-# 📚 Architectural Principles
-
-- Modular by Design
-- API-First Development
-- Security First
-- Documentation Driven
-- Simplicity over Complexity
-- Scalability by Design
-- Open Source Friendly
-- Separation of Concerns
-
----
-
-# 📝 Revision History
-
-| Version | Date | Description |
-|----------|------|-------------|
-| 0.1 | 27-Jul-2026 | Initial High-Level Design |
