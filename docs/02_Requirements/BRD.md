@@ -332,8 +332,3 @@ Future versions may include:
 
 ---
 
-# 📝 Revision History
-
-| Version | Date | Description |
-|----------|------|-------------|
-| 0.1 | 27-Jul-2026 | Initial Draft |
