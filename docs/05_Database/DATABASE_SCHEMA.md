@@ -237,4 +237,3 @@ Repository
 PostgreSQL
 ```
 
-The repository layer is now ready for service implementation.
