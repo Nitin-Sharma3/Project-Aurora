@@ -321,19 +321,3 @@ Future versions may include:
 
 ---
 
-# 📚 Glossary
-
-| Term | Meaning |
-|------|---------|
-| BRD | Business Requirements Document |
-| SRS | Software Requirements Specification |
-| LMS | Learning Management System |
-| RBAC | Role-Based Access Control |
-
----
-
-# 📝 Revision History
-
-| Version | Date | Description |
-|----------|------|-------------|
-| 0.1 | 27-Jul-2026 | Initial Draft |
